@@ -6,8 +6,8 @@ export LIBOQS_TAG="0.12.0"
 export LIBOQS_CPP_TAG="0.12.0"
 
 # Dependencies
-# sudo apt update -y
-# sudo apt install -y build-essential git cmake libssl-dev wget unzip
+sudo apt update -y
+sudo apt install -y build-essential git cmake libssl-dev wget unzip
 
 # Clone the repository liboqs
 # git clone --depth=1 --branch ${LIBOQS_TAG} https://github.com/open-quantum-safe/liboqs
@@ -32,22 +32,13 @@ sudo cmake --install build
 # You may need to set the LD_LIBRARY_PATH, environment variable to point to the path to liboqs library directory
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
-# # Create virtual environment 
-cd ..
-# python3 -m venv venv
-# source venv/bin/activate
-# python3 -m ensurepip --upgrade
-# pip install -r requirements.txt
-
 # Clone the repository
 # Configure and install the wrapper
+cd ..
 # git clone --depth=1 --branch ${LIBOQS_CPP_TAG} https://github.com/open-quantum-safe/liboqs-python
 git clone https://github.com/open-quantum-safe/liboqs-cpp
-# cd liboqs-cpp
 git checkout tags/${LIBOQS_CPP_TAG}
 
 cmake -S liboqs-cpp -B liboqs-cpp/build
 sudo cmake --build liboqs-cpp/build --target install
-cmake --build liboqs-cpp/build --target sig
-
-
+# cmake --build liboqs-cpp/build --target sig

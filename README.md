@@ -1,3 +1,20 @@
+# ECDSA
+
+dependência:
+```bash
+sudo apt install libgcrypt20-dev
+```
+
+```bash
+g++ ecdsa384.cpp -lgcrypt -o ecdsa
+```
+
+```bash
+./ecdsa
+```
+
+## PQC
+
 ```bash
 chmod +x install.sh 
 ```
