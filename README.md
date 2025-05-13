@@ -10,7 +10,7 @@ g++ ecdsa384.cpp -lgcrypt -o ecdsa
 ```
 
 ```bash
-./ecdsa
+./ecdsa >> ecdsa.csv
 ```
 
 ## PQC
