@@ -46,36 +46,22 @@ int main() {
         // ========================================================
         gcry_sexp_t signature;
 
-        auto t1 = std::chrono::high_resolution_clock::now();
         gcry_error_t err = gcry_pk_sign(&signature, data, priv_key);
-        auto t2 = std::chrono::high_resolution_clock::now();
 
         if (err) {
             std::cerr << "Erro ao assinar: " << gcry_strerror(err) << "\n";
             return 1;
         }
 
-        std::chrono::duration<double, std::micro> sign_duration = t2 - t1;
-        // std::cout << "Assinatura criada com sucesso!\n";
-        // std::cout << "Tempo de assinatura: " << sign_duration.count() << " microssegundos\n";
-
         // ========================================================
         // Medir tempo da verificação
         // ========================================================
-        auto t3 = std::chrono::high_resolution_clock::now();
         err = gcry_pk_verify(signature, data, pub_key);
-        auto t4 = std::chrono::high_resolution_clock::now();
 
         if (err) {
-            std::cerr << "❌ Assinatura inválida: " << gcry_strerror(err) << "\n";
+            std::cerr << "Assinatura inválida: " << gcry_strerror(err) << "\n";
             return 1;
         }
-
-        std::chrono::duration<double, std::micro> verify_duration = t4 - t3;
-
-        std::cout << sign_duration.count() << ", " << verify_duration.count() << std::endl;
-        // std::cout << "Assinatura verificada com sucesso!\n";
-        // std::cout << "Tempo de verificação: " << verify_duration.count() << " microssegundos\n";
 
         // ========================================================
         // Liberação de recursos
@@ -87,6 +73,7 @@ int main() {
         gcry_sexp_release(keypair);
     }
 
+    std::cout << "warm" << std::endl;
 
     for(int i = 0; i < 10000; i++){
         // ========================================================
